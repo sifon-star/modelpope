@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="modelpope — студия красоты: стрижки, окрашивание, маникюр, уход за лицом, брови и ресницы, макияж. Онлайн-запись.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="modelpope — салон красоты">
+<meta property="og:description" content="Волосы, ногти, лицо. Работаем спокойно и без спешки.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23000'/%3E%3Ccircle cx='50' cy='50' r='22' fill='%23fff'/%3E%3C/svg%3E">
+<title>modelpope — салон красоты</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--k:#000;--w:#fff;--g:#8a8a8a;--d:#1a1a1a;--serif:"Bodoni Moda","Didot",Georgia,serif;--sans:"Jost","Helvetica Neue",Arial,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px;background:var(--k)}
+body{margin:0;background:var(--k);color:var(--w);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.wrap{padding:0 clamp(20px,5vw,72px)}
+
+/* cursor */
+.cur{position:fixed;left:0;top:0;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:99;transform:translate3d(-100px,-100px,0) scale(.25);transition:width .3s,height .3s,margin .3s}
+.cur.big{width:140px;height:140px;margin:-70px 0 0 -70px}
+@media (hover:none){.cur{display:none}}
+
+/* nav */
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(20px,5vw,72px);mix-blend-mode:difference;color:#fff}
+.logo{font-family:var(--serif);font-size:24px;letter-spacing:.02em}
+nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0;font-size:15px}
+nav ul a{position:relative}
+nav ul a::after{content:"";position:absolute;left:0;bottom:-3px;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.7,0,.2,1)}
+nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
+@media(max-width:720px){nav ul li:not(:last-child){display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(28px,5vw,56px);overflow:hidden}
+.mirror{position:absolute;right:-8vw;top:6vh;width:min(62vw,720px);aspect-ratio:3/4;pointer-events:none}
+.mirror i{position:absolute;inset:0;border:1px solid rgba(255,255,255,.5);border-radius:50%;animation:spin 24s linear infinite}
+.mirror i:nth-child(2){inset:8%;animation-duration:32s;animation-direction:reverse;border-color:rgba(255,255,255,.28)}
+.mirror i:nth-child(3){inset:17%;animation-duration:40s;border-color:rgba(255,255,255,.16)}
+.mirror b{position:absolute;inset:26%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0,#bdbdbd 18%,#3a3a3a 55%,#000 78%);animation:breathe 7s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg) scaleX(.82)}}
+@keyframes breathe{50%{transform:scale(1.07) translateY(-2%)}}
+.hero h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(50px,16.5vw,260px);line-height:.88;letter-spacing:-.03em;display:flex;position:relative}
+.hero h1 span{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 em{display:block;font-style:normal;transform:translateY(105%);animation:rise 1.3s cubic-bezier(.16,1,.3,1) forwards;animation-delay:calc(var(--i)*.09s + .2s)}
+.hero h1 span:nth-child(even) em{font-style:italic}
+@keyframes rise{to{transform:none}}
+.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:clamp(20px,3vw,40px);opacity:0;animation:fade 1s 1.4s forwards}
+@keyframes fade{to{opacity:1}}
+.hero-foot p{margin:0;max-width:34ch;color:#cfcfcf}
+.btn{display:inline-flex;align-items:center;gap:14px;border:1px solid #fff;border-radius:999px;padding:16px 30px;font-size:16px;font-weight:400;position:relative;overflow:hidden;background:none;color:#fff;cursor:pointer;font-family:inherit;isolation:isolate}
+.btn::before{content:"";position:absolute;inset:0;background:#fff;transform:translateY(101%);transition:transform .5s cubic-bezier(.7,0,.2,1);z-index:-1;border-radius:50% 50% 0 0/30% 30% 0 0}
+.btn:hover{color:#000}.btn:hover::before{transform:none;border-radius:0}
+.btn.dark{border-color:#000;color:#000}.btn.dark::before{background:#000}.btn.dark:hover{color:#fff}
+
+/* marquee */
+.mq{background:#fff;color:#000;overflow:hidden;white-space:nowrap;padding:22px 0;border-block:1px solid #fff}
+.mq div{display:inline-block;font-family:var(--serif);font-style:italic;font-size:clamp(30px,5vw,64px);line-height:1.1;will-change:transform}
+.mq span{margin:0 .5em}
+.mq svg{width:.5em;height:.5em;vertical-align:middle;margin:0 .6em}
+
+/* services */
+section{position:relative}
+.pad{padding:clamp(80px,12vw,160px) 0}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,7vw,104px);line-height:1;letter-spacing:-.02em;margin:0 0 clamp(36px,6vw,80px)}
+.row{border-top:1px solid #3a3a3a;position:relative;overflow:hidden}
+.row:last-child{border-bottom:1px solid #3a3a3a}
+.row::before{content:"";position:absolute;inset:0;background:#fff;transform:scaleY(0);transform-origin:bottom;transition:transform .55s cubic-bezier(.7,0,.2,1)}
+.row button{all:unset;box-sizing:border-box;position:relative;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:clamp(12px,3vw,48px);width:100%;padding:clamp(20px,3vw,34px) clamp(8px,1vw,16px);cursor:pointer;transition:color .4s}
+.row button span:first-child{font-family:var(--serif);font-size:clamp(26px,4.2vw,60px);line-height:1.1;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.row .pr{font-size:15px;color:var(--g);transition:color .4s}
+.plus{width:22px;height:22px;position:relative;transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.plus::before,.plus::after{content:"";position:absolute;background:currentColor;left:0;top:50%;width:100%;height:1px}
+.plus::after{transform:rotate(90deg)}
+.row:hover::before,.row.open::before{transform:none}
+.row:hover button,.row.open button{color:#000}
+.row:hover .pr,.row.open .pr{color:#444}
+.row:hover button span:first-child{transform:translateX(14px)}
+.row.open .plus{transform:rotate(135deg)}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.7,0,.2,1);position:relative;color:#000}
+.row.open .more{grid-template-rows:1fr}
+.more>div{overflow:hidden}
+.more p{margin:0;padding:0 clamp(8px,1vw,16px) 34px;max-width:56ch;font-size:18px}
+.more ul{margin:0;padding:0 clamp(8px,1vw,16px) 34px;list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.more li{border:1px solid #000;border-radius:999px;padding:5px 16px;font-size:15px}
+
+/* works */
+.light{background:#fff;color:#000}
+.works{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(14px,2vw,28px);align-items:start}
+.w{position:relative;overflow:hidden;background:#000;clip-path:inset(0 0 0 0);cursor:pointer}
+.w .art{position:absolute;inset:-12% 0;will-change:transform;transition:filter .6s,scale .9s cubic-bezier(.16,1,.3,1)}
+.w:hover .art{scale:1.06;filter:invert(1)}
+.w figcaption{position:absolute;left:18px;right:18px;bottom:16px;display:flex;justify-content:space-between;color:#fff;mix-blend-mode:difference;font-size:15px}
+.w:nth-child(1){grid-column:1/8;aspect-ratio:4/3}
+.w:nth-child(2){grid-column:8/13;aspect-ratio:3/4;margin-top:clamp(40px,10vw,140px)}
+.w:nth-child(3){grid-column:1/6;aspect-ratio:3/4}
+.w:nth-child(4){grid-column:6/13;aspect-ratio:4/3;margin-top:clamp(20px,6vw,90px)}
+@media(max-width:720px){.w:nth-child(n){grid-column:1/-1;margin-top:0}}
+.a1{background:conic-gradient(from 210deg at 62% 58%,#000,#fff 18%,#6a6a6a 30%,#000 52%,#d8d8d8 70%,#000)}
+.a2{background:radial-gradient(ellipse 60% 40% at 50% 30%,#fff,#000 70%),linear-gradient(#000,#444)}
+.a3{background:repeating-linear-gradient(115deg,#000 0 14px,#fff 14px 16px,#2a2a2a 16px 40px),#000;filter:contrast(1.1)}
+.a4{background:radial-gradient(circle at 30% 70%,#fff 0,#9a9a9a 14%,#000 40%),radial-gradient(circle at 78% 24%,#fff 0,#000 26%);background-blend-mode:difference}
+.grain{position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* statement */
+.st{font-family:var(--serif);font-size:clamp(30px,5.4vw,78px);line-height:1.15;letter-spacing:-.015em;max-width:20em;margin:0}
+.st span{opacity:.14;transition:opacity .25s}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:clamp(50px,8vw,110px);border-top:1px solid #3a3a3a;padding-top:28px}
+.facts b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(44px,7vw,100px);line-height:1}
+.facts span{color:var(--g);font-size:15px}
+@media(max-width:600px){.facts{grid-template-columns:1fr}}
+
+/* booking */
+.book{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px)}
+@media(max-width:820px){.book{grid-template-columns:1fr}}
+.book p{max-width:34ch;font-size:19px}
+form{display:grid;gap:28px;align-content:start}
+label{display:block;position:relative}
+label span{position:absolute;left:0;top:18px;color:#6a6a6a;pointer-events:none;transition:.35s cubic-bezier(.16,1,.3,1);transform-origin:left}
+input,select{width:100%;border:0;border-bottom:1px solid #000;background:none;font:inherit;font-size:20px;padding:20px 0 10px;border-radius:0;color:#000;outline:none;appearance:none;-webkit-appearance:none}
+input:focus,select:focus{border-bottom-width:3px;padding-bottom:8px}
+label:focus-within span,input:not(:placeholder-shown)~span,select:valid~span{transform:translateY(-22px) scale(.72);color:#000}
+.done{display:none;font-family:var(--serif);font-size:clamp(28px,3.4vw,44px);line-height:1.2}
+.sent form{display:none}.sent .done{display:block;animation:fade .8s forwards}
+
+footer{padding:clamp(60px,8vw,110px) 0 36px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;color:#cfcfcf}
+.fg h3{margin:0 0 10px;font-weight:400;color:#fff;font-size:17px}
+.fg p{margin:0}
+.big{font-family:var(--serif);font-size:clamp(46px,15.5vw,240px);line-height:.85;letter-spacing:-.03em;margin:clamp(40px,6vw,80px) 0 0;color:#fff;white-space:nowrap;overflow:hidden}
+@media(max-width:720px){.fg{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.hero h1 em{transform:none}.hero-foot{opacity:1}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="cur" aria-hidden="true"></div>
+
+<nav>
+  <a class="logo" href="#top">modelpope</a>
+  <ul><li><a href="#services">Услуги</a></li><li><a href="#works">Работы</a></li><li><a href="#about">О студии</a></li><li><a href="#book">Запись</a></li></ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="mirror" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+  <div class="wrap">
+    <h1 aria-label="modelpope"><span><em style="--i:0">m</em></span><span><em style="--i:1">o</em></span><span><em style="--i:2">d</em></span><span><em style="--i:3">e</em></span><span><em style="--i:4">l</em></span><span><em style="--i:5">p</em></span><span><em style="--i:6">o</em></span><span><em style="--i:7">p</em></span><span><em style="--i:8">e</em></span></h1>
+    <div class="hero-foot">
+      <p>Студия красоты: волосы, ногти, лицо. Работаем спокойно и без спешки, чтобы результат держался.</p>
+      <a class="btn" href="#book">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="services" class="pad">
+  <div class="wrap">
+    <h2>Услуги</h2>
+    <div id="list">
+      <div class="row"><button aria-expanded="false"><span>Стрижка и укладка</span><span class="pr">от 4 500 ₽</span><i class="plus"></i></button><div class="more"><div><p>Подбираем форму под строение лица и вашу привычную утреннюю рутину. Стрижка, которая хорошо выглядит и на пятый день после салона.</p><ul><li>Женская</li><li>Мужская</li><li>Укладка</li><li>Детская</li></ul></div></div></div>
+      <div class="row"><button aria-expanded="false"><span>Окрашивание</span><span class="pr">от 7 000 ₽</span><i class="plus"></i></button><div class="more"><div><p>От тонировки до сложного блонда. Перед работой смотрим на состояние волос и честно говорим, сколько визитов понадобится.</p><ul><li>Блонд</li><li>Тонирование</li><li>Airtouch</li><li>Уход Olaplex</li></ul></div></div></div>
+      <div class="row"><button aria-expanded="false"><span>Маникюр и педикюр</span><span class="pr">от 2 800 ₽</span><i class="plus"></i></button><div class="more"><div><p>Стерильные инструменты из крафт-пакета, аккуратная работа с кутикулой и покрытие, которое не отслаивается две-три недели.</p><ul><li>Классический</li><li>Гель-лак</li><li>Дизайн</li><li>Педикюр</li></ul></div></div></div>
+      <div class="row"><button aria-expanded="false"><span>Уход за лицом</span><span class="pr">от 5 500 ₽</span><i class="plus"></i></button><div class="more"><div><p>Чистка, пилинги и массаж. Программу подбирает косметолог после короткой консультации, без лишних процедур в чеке.</p><ul><li>Чистка</li><li>Пилинг</li><li>Массаж лица</li><li>Увлажнение</li></ul></div></div></div>
+      <div class="row"><button aria-expanded="false"><span>Брови и ресницы</span><span class="pr">от 2 000 ₽</span><i class="plus"></i></button><div class="more"><div><p>Форма бровей по вашим чертам и естественное ламинирование ресниц. Результат выглядит как ваш, только лучше.</p><ul><li>Ламинирование</li><li>Окрашивание</li><li>Коррекция</li></ul></div></div></div>
+      <div class="row"><button aria-expanded="false"><span>Макияж</span><span class="pr">от 4 000 ₽</span><i class="plus"></i></button><div class="more"><div><p>Дневной, вечерний и свадебный макияж. Для события приезжайте за два часа: сделаем без спешки и оставим запас на правки.</p><ul><li>Дневной</li><li>Вечерний</li><li>Свадебный</li></ul></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="works" class="light pad">
+  <div class="wrap">
+    <h2>Работы</h2>
+    <div class="works">
+      <figure class="w" style="margin:0"><div class="art a1" data-s=".08"></div><div class="grain"></div><figcaption><span>Блонд, холодный оттенок</span><span>Волосы</span></figcaption></figure>
+      <figure class="w" style="margin:0"><div class="art a2" data-s=".14"></div><div class="grain"></div><figcaption><span>Вечерний образ</span><span>Макияж</span></figcaption></figure>
+      <figure class="w" style="margin:0"><div class="art a3" data-s=".1"></div><div class="grain"></div><figcaption><span>Графичный дизайн</span><span>Ногти</span></figcaption></figure>
+      <figure class="w" style="margin:0"><div class="art a4" data-s=".06"></div><div class="grain"></div><figcaption><span>Свадебная укладка</span><span>Волосы</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="pad">
+  <div class="wrap">
+    <p class="st" id="st">Мы не гонимся за трендами и не продаём лишнее. Подбираем то, что подходит именно вам, делаем аккуратно и объясняем, как ухаживать дома.</p>
+    <div class="facts">
+      <div><b data-n="9">0</b><span>лет работаем</span></div>
+      <div><b data-n="12">0</b><span>мастеров в команде</span></div>
+      <div><b data-n="4800">0</b><span>клиентов вернулись снова</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="light pad">
+  <div class="wrap book" id="bk">
+    <div>
+      <h2>Запись</h2>
+      <p>Оставьте имя и телефон. Администратор перезвонит в течение часа в рабочее время и подберёт удобное окно.</p>
+    </div>
+    <div>
+      <form id="f">
+        <label><input name="n" placeholder=" " required autocomplete="name"><span>Ваше имя</span></label>
+        <label><input name="t" type="tel" placeholder=" " required autocomplete="tel"><span>Телефон</span></label>
+        <label><select name="s" required><option value="" hidden></option><option>Стрижка и укладка</option><option>Окрашивание</option><option>Маникюр и педикюр</option><option>Уход за лицом</option><option>Брови и ресницы</option><option>Макияж</option></select><span>Услуга</span></label>
+        <div><button class="btn dark" type="submit">Отправить заявку</button></div>
+      </form>
+      <div class="done" id="done"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div><h3>modelpope</h3><p>Студия красоты. Ежедневно, 10:00–21:00</p></div>
+      <div><h3>Адрес</h3><p>Ваш город, ул. Примерная, 12</p></div>
+      <div><h3>Связь</h3><p>+7 000 000-00-00<br>hello@modelpope.studio</p></div>
+    </div>
+    <p class="big" aria-hidden="true">modelpope</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  // cursor
+  var cur=document.querySelector(".cur"),cx=-100,cy=-100,tx=-100,ty=-100,sc=.25,ts=.25;
+  addEventListener("pointermove",function(e){tx=e.clientX;ty=e.clientY;ts=1});
+  document.addEventListener("pointerover",function(e){cur.classList.toggle("big",!!e.target.closest("a,button,.w,select,input"))});
+  document.addEventListener("mouseleave",function(){ts=.25});
+
+  // marquee
+  var mq=document.getElementById("mq"),words=["Волосы","Ногти","Лицо","Брови","Макияж"],dot='<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>',h="";
+  for(var r=0;r<4;r++)for(var i=0;i<words.length;i++)h+="<span>"+words[i]+"</span>"+dot;
+  mq.innerHTML=h;var mqx=0,mqv=.6,last=0;
+
+  // statement words
+  var st=document.getElementById("st"),parts=st.textContent.split(" ");
+  st.innerHTML=parts.map(function(w){return "<span>"+w+"</span>"}).join(" ");
+  var sw=st.querySelectorAll("span");
+
+  // accordion
+  document.querySelectorAll(".row button").forEach(function(b){
+    b.addEventListener("click",function(){
+      var row=b.parentNode,open=!row.classList.contains("open");
+      document.querySelectorAll(".row.open").forEach(function(o){o.classList.remove("open");o.querySelector("button").setAttribute("aria-expanded","false")});
+      if(open){row.classList.add("open");b.setAttribute("aria-expanded","true")}
+    });
+  });
+
+  // counters
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;cio.unobserve(e.target);
+    var el=e.target,n=+el.dataset.n,t0=performance.now(),d=rm?1:1800;
+    (function step(t){var p=Math.min(1,(t-t0)/d),v=1-Math.pow(1-p,4);el.textContent=Math.round(n*v).toLocaleString("ru-RU");if(p<1)requestAnimationFrame(step)})(t0);
+  })},{threshold:.6});
+  document.querySelectorAll("[data-n]").forEach(function(el){cio.observe(el)});
+
+  // form
+  document.getElementById("f").addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=this.n.value.trim().split(" ")[0];
+    document.getElementById("done").textContent=n+", заявка отправлена. Мы позвоним вам в течение часа.";
+    document.getElementById("bk").classList.add("sent");
+  });
+
+  // frame loop
+  var arts=document.querySelectorAll(".art"),lastY=scrollY,vel=0;
+  function loop(t){
+    cx+=(tx-cx)*.16;cy+=(ty-cy)*.16;sc+=(ts-sc)*.12;
+    cur.style.transform="translate3d("+cx+"px,"+cy+"px,0) scale("+sc+")";
+    var y=scrollY;vel+=((y-lastY)-vel)*.15;lastY=y;
+    if(!rm){
+      mqx-=mqv+Math.abs(vel)*.35;
+      var w=mq.scrollWidth/4;if(-mqx>w)mqx+=w;
+      mq.style.transform="translateX("+mqx+"px)";
+      var vh=innerHeight;
+      arts.forEach(function(a){
+        var r=a.parentNode.getBoundingClientRect();
+        if(r.bottom<0||r.top>vh)return;
+        var p=(r.top+r.height/2-vh/2)/vh;
+        a.style.transform="translate3d(0,"+(-p*r.height*(+a.dataset.s)*2.2)+"px,0)";
+      });
+    }
+    var sr=st.getBoundingClientRect(),prog=(innerHeight*.85-sr.top)/(sr.height+innerHeight*.3);
+    sw.forEach(function(s,i){s.style.opacity=(prog*1.15>i/sw.length)?1:.14});
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
+
+# modelpope — сайт салона красоты
+
+Статический сайт: один файл `index.html`, без сборки и зависимостей.
+
+## Деплой на Vercel
+
+1. Загрузите содержимое архива в новый репозиторий на GitHub (файлы должны лежать в корне репозитория).
+2. На vercel.com нажмите **Add New → Project** и выберите этот репозиторий.
+3. В настройках оставьте всё по умолчанию: Framework Preset — **Other**, Build Command и Output Directory — пустые.
+4. Нажмите **Deploy**. Каждый следующий push в GitHub будет обновлять сайт автоматически.
+
+## Что заменить своим
+
+В `index.html` найдите и поправьте: название «modelpope», адрес, телефон, почту, цены и описания услуг, подписи в блоке «Работы».
+
+Форма записи пока работает только на экране (показывает подтверждение), заявки никуда не отправляются. Чтобы получать их, подключите сервис форм (например, Formspree) или Vercel Function.
+
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
+
+.vercel
+.DS_Store
+node_modules
