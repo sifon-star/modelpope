@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="modelpope — салон красоты, стрижки, окрашивание, маникюр, уход за лицом, брови, ресницы и макияж."
+    />
+    <meta name="theme-color" content="#000000" />
+    <title>modelpope — салон красоты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Jost:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #0a0a0a;
+        --white: #f5f5f3;
+        --muted: #bfbfbf;
+        --line: rgba(255,255,255,0.18);
+        --dark-line: rgba(0,0,0,0.18);
+        --soft: #e7e4dc;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+        background: var(--black);
+      }
+
+      body {
+        margin: 0;
+        background: var(--black);
+        color: var(--white);
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button, input, select {
+        font: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      nav {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 40;
+        padding: 18px 0;
+        backdrop-filter: blur(8px);
+        background: rgba(10, 10, 10, 0.2);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(1.6rem, 2vw, 2rem);
+        letter-spacing: 0.04em;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.92rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-links a {
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        align-items: end;
+        padding-top: 120px;
+        padding-bottom: 40px;
+        overflow: hidden;
+      }
+
+      .hero-visual {
+        position: absolute;
+        right: -6%;
+        top: 8%;
+        width: min(54vw, 720px);
+        aspect-ratio: 3 / 4;
+        pointer-events: none;
+      }
+
+      .ring {
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255,255,255,0.55);
+        border-radius: 50%;
+        animation: spin 24s linear infinite;
+      }
+
+      .ring:nth-child(2) { inset: 8%; animation-duration: 32s; animation-direction: reverse; }
+      .ring:nth-child(3) { inset: 17%; animation-duration: 40s; }
+
+      .core {
+        position: absolute;
+        inset: 26% 22%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 35% 28%, #ffffff 0%, #d1d1d1 18%, #3a3a3a 54%, #000000 80%);
+        animation: breathe 7s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg) scaleX(0.82); }
+      }
+
+      @keyframes breathe {
+        50% { transform: scale(1.08) translateY(-2%); }
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 32px;
+        align-items: end;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Bodoni Moda", serif;
+        font-weight: 400;
+        font-size: clamp(4rem, 15vw, 15rem);
+        line-height: 0.9;
+        letter-spacing: -0.055em;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      h1 span {
+        display: block;
+        overflow: hidden;
+      }
+
+      h1 em {
+        display: block;
+        font-style: normal;
+        transform: translateY(120%);
+        animation: rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation-delay: calc(var(--i) * 0.08s + 0.2s);
+      }
+
+      h1 span:nth-child(even) em {
+        font-style: italic;
+      }
+
+      @keyframes rise {
+        to { transform: translateY(0); }
+      }
+
+      .hero-sub {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 28px;
+        opacity: 0;
+        animation: fadeIn 1s ease forwards 1.4s;
+      }
+
+      @keyframes fadeIn {
+        to { opacity: 1; }
+      }
+
+      .hero-sub p {
+        margin: 0;
+        max-width: 38ch;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        padding: 16px 26px;
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--white);
+        background: transparent;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+        transition: color 0.35s ease;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--white);
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+        z-index: -1;
+      }
+
+      .btn:hover::before,
+      .btn:focus-visible::before {
+        transform: translateY(0);
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        color: var(--black);
+      }
+
+      .btn-dark {
+        color: var(--black);
+        border-color: var(--black);
+      }
+
+      .btn-dark::before {
+        background: var(--black);
+      }
+
+      .btn-dark:hover,
+      .btn-dark:focus-visible {
+        color: var(--white);
+      }
+
+      .marquee {
+        background: var(--white);
+        color: var(--black);
+        border-top: 1px solid rgba(0,0,0,0.8);
+        border-bottom: 1px solid rgba(0,0,0,0.8);
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 18px 0;
+      }
+
+      .marquee-track {
+        display: inline-block;
+        white-space: nowrap;
+        will-change: transform;
+      }
+
+      .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 18px;
+        font-family: "Bodoni Moda", serif;
+        font-style: italic;
+        font-size: clamp(1.8rem, 3vw, 3.2rem);
+        margin-right: 16px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        display: inline-block;
+      }
+
+      section {
+        position: relative;
+      }
+
+      .section {
+        padding: clamp(4.5rem, 8vw, 9rem) 0;
+      }
+
+      .section-light {
+        background: var(--white);
+        color: var(--black);
+      }
+
+      .section-title {
+        font-family: "Bodoni Moda", serif;
+        font-weight: 400;
+        font-size: clamp(2.7rem, 6vw, 6rem);
+        line-height: 0.96;
+        letter-spacing: -0.04em;
+        margin: 0 0 2.2rem;
+      }
+
+      .service-list {
+        border-top: 1px solid rgba(255,255,255,0.18);
+      }
+
+      .service-item {
+        border-bottom: 1px solid rgba(255,255,255,0.18);
+        transition: background 0.25s ease;
+      }
+
+      .service-item:hover {
+        background: rgba(255,255,255,0.02);
+      }
+
+      .service-button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: 20px;
+        background: none;
+        border: 0;
+        color: inherit;
+        text-align: left;
+        padding: 28px 0;
+        cursor: pointer;
+      }
+
+      .service-name {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(1.8rem, 3vw, 3.85rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .service-price {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.75);
+      }
+
+      .service-plus {
+        width: 22px;
+        height: 22px;
+        position: relative;
+        transition: transform 0.25s ease;
+      }
+
+      .service-plus::before,
+      .service-plus::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+      }
+
+      .service-plus::after {
+        transform: rotate(90deg);
+      }
+
+      .service-item.open .service-plus {
+        transform: rotate(135deg);
+      }
+
+      .service-details {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.35s ease;
+      }
+
+      .service-item.open .service-details {
+        grid-template-rows: 1fr;
+      }
+
+      .service-details-inner {
+        overflow: hidden;
+      }
+
+      .service-copy {
+        padding: 0 0 32px;
+        max-width: 66ch;
+        color: rgba(255,255,255,0.8);
+      }
+
+      .service-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 0 12px;
+      }
+
+      .service-tags span {
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 0.85rem;
+      }
+
+      .light .service-list,
+      .light .service-item {
+        border-color: rgba(0,0,0,0.18);
+      }
+
+      .light .service-price,
+      .light .service-copy {
+        color: rgba(0,0,0,0.7);
+      }
+
+      .light .service-tags span {
+        border-color: rgba(0,0,0,0.7);
+      }
+
+      .works-grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .work {
+        position: relative;
+        overflow: hidden;
+        background: #111;
+        min-height: 260px;
+      }
+
+      .work:nth-child(1) { grid-column: 1 / 8; aspect-ratio: 4 / 3; }
+      .work:nth-child(2) { grid-column: 8 / 13; aspect-ratio: 3 / 4; margin-top: 70px; }
+      .work:nth-child(3) { grid-column: 1 / 6; aspect-ratio: 3 / 4; }
+      .work:nth-child(4) { grid-column: 6 / 13; aspect-ratio: 4 / 3; margin-top: 50px; }
+
+      .art {
+        position: absolute;
+        inset: 0;
+        transition: transform 0.8s ease, filter 0.5s ease;
+      }
+
+      .work:hover .art {
+        transform: scale(1.08);
+        filter: invert(1);
+      }
+
+      .a1 {
+        background: conic-gradient(from 210deg at 62% 58%, #000, #fff 18%, #6a6a6a 30%, #000 52%, #d8d8d8 70%, #000);
+      }
+
+      .a2 {
+        background: radial-gradient(ellipse 60% 40% at 50% 30%, #fff 0%, #000 70%), linear-gradient(#000, #444);
+      }
+
+      .a3 {
+        background: repeating-linear-gradient(115deg, #000 0 14px, #fff 14px 16px, #2a2a2a 16px 40px), #000;
+        filter: contrast(1.1);
+      }
+
+      .a4 {
+        background: radial-gradient(circle at 30% 70%, #fff 0%, #9a9a9a 14%, #000 40%), radial-gradient(circle at 78% 24%, #fff 0%, #000 26%);
+        background-blend-mode: difference;
+      }
+
+      .grain {
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.15'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+        opacity: 0.35;
+        mix-blend-mode: overlay;
+      }
+
+      .work figcaption {
+        position: absolute;
+        inset: auto 18px 18px 18px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: white;
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        mix-blend-mode: difference;
+      }
+
+      .statement {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(2.3rem, 5vw, 5rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+        max-width: 18ch;
+        margin: 0;
+      }
+
+      .statement span {
+        opacity: 0.14;
+        transition: opacity 0.2s ease;
+      }
+
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 54px;
+        border-top: 1px solid rgba(255,255,255,0.18);
+        padding-top: 26px;
+      }
+
+      .fact b {
+        display: block;
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(2.4rem, 5vw, 5.4rem);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .fact span {
+        display: block;
+        margin-top: 12px;
+        color: rgba(255,255,255,0.7);
+        text-transform: none;
+      }
+
+      .book-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(24px, 4vw, 72px);
+        align-items: start;
+      }
+
+      .book-copy p {
+        max-width: 34ch;
+        font-size: 1.12rem;
+        color: rgba(0,0,0,0.8);
+      }
+
+      form {
+        display: grid;
+        gap: 28px;
+      }
+
+      label {
+        position: relative;
+      }
+
+      label span {
+        position: absolute;
+        left: 0;
+        top: 18px;
+        color: rgba(0,0,0,0.6);
+        pointer-events: none;
+        transition: transform 0.25s ease, color 0.25s ease;
+        transform-origin: left;
+      }
+
+      input,
+      select {
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.9);
+        background: transparent;
+        color: var(--black);
+        font-size: 1.2rem;
+        padding: 18px 0 10px;
+        outline: none;
+      }
+
+      input:focus,
+      select:focus {
+        border-bottom-width: 2px;
+      }
+
+      label:focus-within span,
+      input:not(:placeholder-shown) ~ span,
+      select:valid ~ span {
+        transform: translateY(-24px) scale(0.8);
+        color: rgba(0,0,0,1);
+      }
+
+      .done {
+        display: none;
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        line-height: 1.15;
+      }
+
+      .sent form { display: none; }
+      .sent .done { display: block; }
+
+      footer {
+        padding: 56px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 32px;
+        color: rgba(255,255,255,0.74);
+      }
+
+      .footer-grid h3 {
+        margin: 0 0 8px;
+        font-weight: 400;
+        color: var(--white);
+        font-size: 1rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .footer-grid p {
+        margin: 0;
+      }
+
+      .big-word {
+        font-family: "Bodoni Moda", serif;
+        font-size: clamp(3.6rem, 16vw, 15rem);
+        line-height: 0.8;
+        letter-spacing: -0.07em;
+        margin: 44px 0 0;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      @media (max-width: 820px) {
+        .hero-grid,
+        .book-grid,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          gap: 18px;
+          font-size: 0.75rem;
+        }
+
+        .hero {
+          padding-top: 110px;
+        }
+
+        .hero-visual {
+          width: 70vw;
+          right: -16%;
+          top: 18%;
+        }
+
+        .facts {
+          grid-template-columns: 1fr;
+        }
+
+        .work:nth-child(n) {
+          grid-column: 1 / -1;
+          margin-top: 0;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .nav-links li:not(:first-child) {
+          display: none;
+        }
+
+        .service-button {
+          grid-template-columns: 1fr auto;
+        }
+
+        .service-price {
+          grid-column: 1 / 2;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container nav-inner">
+        <a href="#top" class="brand">modelpope</a>
+        <ul class="nav-links" aria-label="Главное меню">
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#works">Работы</a></li>
+          <li><a href="#about">О студии</a></li>
+          <li><a href="#book">Запись</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="core"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <h1 aria-label="modelpope">
+              <span><em style="--i: 0;">m</em></span>
+              <span><em style="--i: 1;">o</em></span>
+              <span><em style="--i: 2;">d</em></span>
+              <span><em style="--i: 3;">e</em></span>
+              <span><em style="--i: 4;">l</em></span>
+              <span><em style="--i: 5;">p</em></span>
+              <span><em style="--i: 6;">o</em></span>
+              <span><em style="--i: 7;">p</em></span>
+              <span><em style="--i: 8;">e</em></span>
+            </h1>
+
+            <div class="hero-sub">
+              <p>Студия красоты: волосы, ногти, лицо. Работаем спокойно и без спешки, чтобы результат держался.</p>
+              <a class="btn" href="#book">Записаться</a>
+            </div>
+          </div>
+
+          <div></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="section-title">Услуги</h2>
+
+        <div class="service-list" aria-label="Список услуг">
+          <div class="service-item open">
+            <button class="service-button" type="button" aria-expanded="true">
+              <span class="service-name">Стрижка и укладка</span>
+              <span class="service-price">от 4 500 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  Подбор формы и длины под ваш тип лица, укладка с учётом образа жизни и предпочтений. Без спешки, с вниманием к деталям.
+                </div>
+                <div class="service-tags">
+                  <span>Стрижка</span>
+                  <span>Укладка</span>
+                  <span>Стайлинг</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-button" type="button" aria-expanded="false">
+              <span class="service-name">Окрашивание</span>
+              <span class="service-price">от 7 000 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  От мягкого тонирования до полноценного окрашивания. Подбираем оттенок с учётом базового цвета, кожи и образа жизни.
+                </div>
+                <div class="service-tags">
+                  <span>Блонд</span>
+                  <span>Тонирование</span>
+                  <span>Уход</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-button" type="button" aria-expanded="false">
+              <span class="service-name">Маникюр и педикюр</span>
+              <span class="service-price">от 2 800 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  Классический, европейский и дизайн по вашему образу. Используем безопасные материалы и аккуратную технику.
+                </div>
+                <div class="service-tags">
+                  <span>Европейский</span>
+                  <span>Дизайн</span>
+                  <span>Педикюр</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-button" type="button" aria-expanded="false">
+              <span class="service-name">Уход за лицом</span>
+              <span class="service-price">от 5 500 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  Пилинг, чистка, увлажнение и восстановление. Подбираем программу под тип кожи и сезонные особенности.
+                </div>
+                <div class="service-tags">
+                  <span>Чистка</span>
+                  <span>Пилинг</span>
+                  <span>Увлажнение</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-button" type="button" aria-expanded="false">
+              <span class="service-name">Брови и ресницы</span>
+              <span class="service-price">от 2 000 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  Коррекция формы, окрашивание и долговременный объем. Выглядит естественно и подчёркивает черты лица.
+                </div>
+                <div class="service-tags">
+                  <span>Коррекция</span>
+                  <span>Окрашивание</span>
+                  <span>Ламинирование</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-button" type="button" aria-expanded="false">
+              <span class="service-name">Макияж</span>
+              <span class="service-price">от 4 000 ₽</span>
+              <span class="service-plus" aria-hidden="true"></span>
+            </button>
+            <div class="service-details">
+              <div class="service-details-inner">
+                <div class="service-copy">
+                  Дневной, вечерний и свадебный макияж, в котором важны не только цвет, но и ощущение лёгкости и уверенности.
+                </div>
+                <div class="service-tags">
+                  <span>Дневной</span>
+                  <span>Вечерний</span>
+                  <span>Свадебный</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light light" id="works">
+      <div class="container">
+        <h2 class="section-title">Работы</h2>
+
+        <div class="works-grid">
+          <figure class="work">
+            <div class="art a1"></div>
+            <div class="grain"></div>
+            <figcaption>
+              <span>Блонд, холодный оттенок</span>
+              <span>Волосы</span>
+            </figcaption>
+          </figure>
+
+          <figure class="work">
+            <div class="art a2"></div>
+            <div class="grain"></div>
+            <figcaption>
+              <span>Вечерний образ</span>
+              <span>Макияж</span>
+            </figcaption>
+          </figure>
+
+          <figure class="work">
+            <div class="art a3"></div>
+            <div class="grain"></div>
+            <figcaption>
+              <span>Графичный дизайн</span>
+              <span>Ногти</span>
+            </figcaption>
+          </figure>
+
+          <figure class="work">
+            <div class="art a4"></div>
+            <div class="grain"></div>
+            <figcaption>
+              <span>Свадебная укладка</span>
+              <span>Волосы</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <p class="statement" id="statement">Мы не гонимся за трендами и не продаём лишнее. Подбираем то, что подходит именно вам.</p>
+
+        <div class="facts">
+          <div class="fact">
+            <b data-number="9">0</b>
+            <span>лет работаем</span>
+          </div>
+          <div class="fact">
+            <b data-number="12">0</b>
+            <span>мастеров в команде</span>
+          </div>
+          <div class="fact">
+            <b data-number="4800">0</b>
+            <span>клиентов вернулись снова</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light light" id="book">
+      <div class="container book-grid">
+        <div class="book-copy">
+          <h2 class="section-title">Запись</h2>
+          <p>Оставьте имя и телефон. Администратор перезвонит в течение часа в рабочее время и подберёт удобное окно.</p>
+        </div>
+
+        <div>
+          <form id="bookingForm">
+            <label>
+              <input name="name" placeholder=" " required autocomplete="name" />
+              <span>Ваше имя</span>
+            </label>
+
+            <label>
+              <input name="phone" type="tel" placeholder=" " required autocomplete="tel" />
+              <span>Телефон</span>
+            </label>
+
+            <label>
+              <select name="service" required>
+                <option value="" hidden></option>
+                <option>Стрижка и укладка</option>
+                <option>Окрашивание</option>
+                <option>Маникюр и педикюр</option>
+                <option>Уход за лицом</option>
+                <option>Брови и ресницы</option>
+                <option>Макияж</option>
+              </select>
+              <span>Услуга</span>
+            </label>
+
+            <button class="btn btn-dark" type="submit">Отправить заявку</button>
+          </form>
+
+          <div class="done" id="doneMessage"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h3>modelpope</h3>
+            <p>Студия красоты. Ежедневно, 10:00–21:00</p>
+          </div>
+          <div>
+            <h3>Адрес</h3>
+            <p>Ваш город, ул. Примерная, 12</p>
+          </div>
+          <div>
+            <h3>Связь</h3>
+            <p>+7 000 000-00-00<br />hello@modelpope.studio</p>
+          </div>
+        </div>
+
+        <p class="big-word" aria-hidden="true">modelpope</p>
+      </div>
+    </footer>
+
+    <script>
+      const marqueeTrack = document.getElementById('marqueeTrack');
+      const words = ['Волосы', 'Ногти', 'Лицо', 'Брови', 'Макияж'];
+      const dot = '<span class="dot"></span>';
+      let marqueeHTML = '';
+
+      for (let j = 0; j < 4; j++) {
+        for (let i = 0; i < words.length; i++) {
+          marqueeHTML += '<span class="marquee-item">' + words[i] + dot + '</span>';
+        }
+      }
+
+      marqueeTrack.innerHTML = marqueeHTML;
+
+      const marquee = document.querySelector('.marquee-track');
+      let offset = 0;
+      let lastY = window.scrollY;
+      let velocity = 0;
+
+      function animateMarquee() {
+        const y = window.scrollY;
+        velocity += ((y - lastY) - velocity) * 0.12;
+        lastY = y;
+        offset -= 0.55 + Math.abs(velocity) * 0.08;
+        const width = marquee.scrollWidth / 4;
+        if (Math.abs(offset) > width) offset += width;
+        marquee.style.transform = 'translateX(' + offset + 'px)';
+        requestAnimationFrame(animateMarquee);
+      }
+      requestAnimationFrame(animateMarquee);
+
+      const serviceItems = document.querySelectorAll('.service-item');
+      serviceItems.forEach((item) => {
+        const button = item.querySelector('.service-button');
+        button.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+          serviceItems.forEach((el) => {
+            el.classList.remove('open');
+            el.querySelector('.service-button').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      const statement = document.getElementById('statement');
+      if (statement) {
+        const wordsText = statement.textContent.split(' ');
+        statement.innerHTML = wordsText.map((word) => '<span>' + word + '</span>').join(' ');
+      }
+
+      const spans = document.querySelectorAll('.statement span');
+      const statementObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const parent = entry.target.parentElement;
+          const children = parent.querySelectorAll('span');
+          children.forEach((span, index) => {
+            span.style.opacity = index < 8 ? '1' : '0.14';
+          });
+        });
+      }, { threshold: 0.5 });
+
+      if (statement) {
+        statementObserver.observe(statement);
+      }
+
+      const counters = document.querySelectorAll('[data-number]');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = Number(el.dataset.number);
+          let current = 0;
+          const step = target / 80;
+          const tick = () => {
+            current += step;
+            if (current < target) {
+              el.textContent = Math.round(current).toLocaleString('ru-RU');
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = target.toLocaleString('ru-RU');
+            }
+          };
+          tick();
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.6 });
+
+      counters.forEach((counter) => counterObserver.observe(counter));
+
+      const form = document.getElementById('bookingForm');
+      const doneMessage = document.getElementById('doneMessage');
+      const formContainer = document.querySelector('#book .container');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = form.elements.name.value.trim().split(' ')[0] || 'Вы';
+        doneMessage.textContent = name + ', заявка отправлена. Мы позвоним вам в течение часа.';
+        formContainer.classList.add('sent');
+      });
+    </script>
+  </body>
+</html>
